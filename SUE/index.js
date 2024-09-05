@@ -5,7 +5,7 @@ const port = 3500;
 app.set("view engine", "ejs");
 
 const connection = require("./database/database");
-const Disciplina = require("./database/disciplinas"); 
+const Disciplina = require("./routes/disciplina"); 
 const Curso = require("./database/curso");
 const Professor = require("./database/professor");
 const Coordenador = require("./database/coordenador");
@@ -25,7 +25,6 @@ const AvaliacaoAlunoVW = require("./database/avaliacaoalunoVW");
 const Pagamento = require("./database/pagamento");
 const PagamentoAluno = require("./database/pagamentoaluno");
 const PagamentoAlunoVW = require("./database/pagamentoalunoVW");
-//Sem rotas
 const Aluno_has_Curso = require("./database/Aluno_has_Curso");
 const Professor_has_Disciplina = require("./database/Professor_has_Disciplina");
 const Curso_has_Disciplina = require("./database/Curso_has_Disciplina");
@@ -43,7 +42,8 @@ connection
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-////////////////////CURSOOOOO////////////////////////
+
+app.use("/", Disciplina);
 
 
 app.get("/curso", (req, res) => {
