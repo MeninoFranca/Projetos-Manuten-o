@@ -31,7 +31,6 @@ const Professor_has_Disciplina = require("./database/Professor_has_Disciplina");
 const Curso_has_Disciplina = require("./database/Curso_has_Disciplina");
 const Aluno_has_Turma = require("./database/Aluno_has_Turma");
 
-
 connection
   .authenticate()
   .then(() => {
@@ -44,98 +43,6 @@ connection
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-// Rota para listar disciplinas
-app.get("/disciplinas", (req, res) => {
-  Disciplina.findAll({
-    raw: true, 
-    order: [["id_disciplina", "DESC"]], 
-  }).then((disciplinas) => {
-    res.render("cad_disciplinas", {
-      disciplinas: disciplinas,
-    });
-  });
-});
-
-app.post("/editar_disciplina", async (req, res) => {
-  const { nome_disciplina, carga_horaria, descricao_disciplina, action } =
-    req.body; 
-  if (action === "incluir") {
-    try {
-      await Disciplina.create({
-        nome_disciplina,
-        carga_horaria,
-        descricao_disciplina,
-      });
-      res.status(201).redirect("/disciplinas");
-    } catch (error) {
-      console.error(
-        "Erro ao inserir dados PARA A DISCIPLINA: /editardisciplina",
-        error
-      );
-      res.status(500).json({
-        error: "Erro ao inserir dados PARA A DISCIPLINA. /editardisciplina",
-      });
-    }
-  }
-
-  if (action === "alterar") {
-    try {
-      const {
-        nome_disciplina,
-        carga_horaria,
-        descricao_disciplina,
-        id_disciplina,
-      } = req.body; 
-      const id = id_disciplina;
-
-      const disciplina = await Disciplina.findByPk(id);
-      if (!disciplina) {
-        return res.status(404).json({
-          error: `Disciplina NÃO FOI encontrada - NA TABELA DE DISCIPLINAS - ID: ${id}.`,
-        });
-      }
-
-      disciplina.nome_disciplina = nome_disciplina;
-      disciplina.carga_horaria = carga_horaria;
-      disciplina.descricao_disciplina = descricao_disciplina;
-      await disciplina.save(); // Salva as alterações
-
-      res.status(201).redirect("/disciplinas");
-    } catch (error) {
-      console.error(
-        `Erro ao ALTERAR dados PARA A DISCIPLINA: /editardisciplina ${nome_disciplina}`,
-        error
-      );
-      res.status(500).json({
-        error: `Erro ao ALTERAR dados PARA A DISCIPLINA. /editardisciplina ${nome_disciplina}`,
-      });
-    }
-  }
-});
-
-app.post("/excluir_disciplina/:id", async (req, res) => {
-  try {
-    const id = req.params.id; 
-    const disciplina = await Disciplina.findByPk(id); 
-    if (!disciplina) {
-      return res.status(404).json({ error: "Disciplina não encontrada." });
-    }
-
-    await Disciplina.destroy({
-      where: {
-        id_disciplina: id,
-      },
-    });
-
-    res.redirect("/disciplinas");
-  } catch (error) {
-    console.error("Erro ao excluir dados:", error);
-    res
-      .status(500)
-      .json({ error: "Erro ao excluir dados da tabela de disciplina." });
-  }
-});
 ////////////////////CURSOOOOO////////////////////////
 
 
