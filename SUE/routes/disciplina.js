@@ -14,36 +14,27 @@ router.get('/disciplina', async (req, res) => {
     }
 });
 
-router.post("/editar_disciplina", async (req, res) => {
-    const { nome_disciplina, carga_horaria, descricao_disciplina, action, id_disciplina } = req.body;
+router.post("/editar_disciplina/criar", async (req, res) => {
+    const { nome_disciplina, carga_horaria, descricao_disciplina} = req.body;
     try {
-        if (action === "incluir") {
             await Disciplina.create({
                 nome_disciplina,
                 carga_horaria,
                 descricao_disciplina,
             });
-            res.redirect("/disciplina");
-        } else if (action === "alterar") {
-            const disciplina = await Disciplina.findByPk(id_disciplina);
-            if (!disciplina) {
-                return res.status(404).json({ error: `Disciplina não encontrada - ID: ${id_disciplina}.` });
-            }
-
+            res.status(201)
             disciplina.nome_disciplina = nome_disciplina;
             disciplina.carga_horaria = carga_horaria;
             disciplina.descricao_disciplina = descricao_disciplina;
             await disciplina.save();
-
             res.redirect("/disciplina");
-        } else {
-            res.status(400).json({ error: "Ação inválida." });
-        }
-    } catch (error) {
+        } 
+        catch (error) {
         console.error("Erro ao processar dados da disciplina:", error);
         res.status(500).json({ error: "Erro ao processar dados da disciplina." });
     }
 });
+
 
 router.post("/excluir_disciplina/:id", async (req, res) => {
     try {
