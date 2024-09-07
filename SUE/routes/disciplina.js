@@ -23,15 +23,11 @@ router.post("/editar_disciplina/criar", async (req, res) => {
                 descricao_disciplina,
             });
             res.status(201)
-            disciplina.nome_disciplina = nome_disciplina;
-            disciplina.carga_horaria = carga_horaria;
-            disciplina.descricao_disciplina = descricao_disciplina;
-            await disciplina.save();
             res.redirect("/disciplina");
         } 
         catch (error) {
-        console.error("Erro ao processar dados da disciplina:", error);
-        res.status(500).json({ error: "Erro ao processar dados da disciplina." });
+        console.error(error);
+        res.status(500).json(error);
     }
 });
 
