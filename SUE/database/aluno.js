@@ -1,4 +1,4 @@
-const { DataTypes, Sequelize} = require('sequelize');
+const { DataTypes } = require('sequelize');
 const connection = require('./database'); 
 
 const Aluno = connection.define(
@@ -26,24 +26,20 @@ const Aluno = connection.define(
     {
         tableName: 'aluno',
         timestamps: false,
-       
     }
 );
 
-/**/
+
 async function sincronizarAluno() {
     try {
         await Aluno.sync({ force: false });
+        console.log("Tabela Aluno sincronizada com sucesso.");
     } catch (error) {
         console.error("Erro ao sincronizar a tabela Aluno: ", error);
     }
 }
 
 module.exports = {
-    Aluno: Aluno,
-    sincronizarAluno: sincronizarAluno
+    Aluno,
+    sincronizarAluno
 };
-
-Aluno.sync({ force: false }).then(() => {});
-
-module.exports = Aluno;
