@@ -36,6 +36,7 @@ router.post("/aluno/criar",async(req,res)=>{
     }
 })
 
+router.post("")
 
 
 module.exports = router;

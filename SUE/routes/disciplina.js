@@ -31,7 +31,7 @@ router.post("/disciplina/criar", async (req, res) => {
     }
 });
 
-router.post("/disciplina/editar/:id", async(req,res) =>{
+router.put("/disciplina/editar/:id", async(req,res) =>{
     try {
         const id = req.params.id
         const {
@@ -57,7 +57,7 @@ router.post("/disciplina/editar/:id", async(req,res) =>{
 })
 
 
-router.post("/disciplina/excluir/:id", async (req, res) => {
+router.delete("/disciplina/excluir/:id", async (req, res) => {
     try {
         const id = req.params.id;
         const disciplina = await Disciplina.findByPk(id);
