@@ -53,4 +53,18 @@ router.put("/aluno/editar/:id", async (req, res) => {
   }
 });
 
+router.delete("/aluno/excluir/:id", async (req,res)=>{
+    try {
+        const id = req.params.id
+        const aluno = await Aluno.findByPk(id)
+        if(!aluno){
+            res.status(401).json("Tabela nao encontrada na coluna")
+        }
+        await aluno.destroy({where : {id_Aluno: id}})
+        res.status(201).json("Excluido com sucesso")
+    } catch (error) {
+        res.status(401).json("Falha na conexao")
+    }
+})
+
 module.exports = router;
