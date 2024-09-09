@@ -14,7 +14,7 @@ router.get('/disciplina', async (req, res) => {
     }
 });
 
-router.post("/editar_disciplina/criar", async (req, res) => {
+router.post("/disciplina/criar", async (req, res) => {
     const { nome_disciplina, carga_horaria, descricao_disciplina} = req.body;
     try {
             await Disciplina.create({
@@ -31,8 +31,33 @@ router.post("/editar_disciplina/criar", async (req, res) => {
     }
 });
 
+router.post("/disciplina/editar/:id", async(req,res) =>{
+    try {
+        const id = req.params.id
+        const {
+            nome_disciplina,
+            carga_horaria,
+            descricao_disciplina
+        } = req.body
 
-router.post("/excluir_disciplina/:id", async (req, res) => {
+        const disciplina = await Disciplina.findByPk(id)
+        if(!disciplina){
+            return res.status(404).json({error : `Tabela ${id} não encontrada`})
+        }
+
+        disciplina.nome_disciplina = nome_disciplina
+        disciplina.carga_horaria = carga_horaria
+        disciplina.descricao_disciplina = descricao_disciplina
+
+        await disciplina.save()
+        res.status(201)
+    } catch (error) {
+        res.error(`erro em editar os dados da tabela`)
+    }
+})
+
+
+router.post("/disciplina/excluir/:id", async (req, res) => {
     try {
         const id = req.params.id;
         const disciplina = await Disciplina.findByPk(id);
