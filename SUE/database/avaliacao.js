@@ -27,7 +27,6 @@ const Avaliacao = connection.define('avaliacao', {
 });
 
 
-/**/
 async function sincronizarAvaliacao() {
   try {
     await Avaliacao.sync({ force: false });
@@ -40,11 +39,6 @@ async function sincronizarAvaliacao() {
 }
 
 module.exports = {
-    Avaliacao: Avaliacao,
-  sincronizarAvaliacao: sincronizarAvaliacao
+    Avaliacao,
+    sincronizarAvaliacao
 };
-
-
-Avaliacao.sync({ force: false }).then(() => {});
-
-module.exports = Avaliacao;

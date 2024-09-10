@@ -11,7 +11,7 @@ const Disciplina = require("./routes/disciplina");
 // const Coordenador = require("./database/coordenador");
 const Aluno = require("./routes/aluno");
 // const Turma = require("./database/turma");
-// const Avaliacao = require("./database/avaliacao");
+const Avaliacao = require("./routes/avaliacao");
 // const CoordenadorCurso = require("./database/coordenadorcurso");
 // const CoordenadorCursoVW = require("./database/coordenadorcursoVW");
 // const TurmaCurso = require("./database/turmacurso");
@@ -46,6 +46,7 @@ app.use(bodyParser.json());
 
 app.use("/", Disciplina);
 app.use("/", Aluno);
+app.use("/", Avaliacao);
 
 // //////////ALUNOOO
 
