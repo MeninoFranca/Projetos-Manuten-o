@@ -34,9 +34,6 @@ async function sincronizarProfessor() {
   }
 }
 module.exports ={
-Professor: Professor,
-sincronizarProfessor: sincronizarProfessor
+    Professor,
+    sincronizarProfessor
 };
-Professor.sync({ force: false }).then(() => {});
-
-module.exports = Professor;

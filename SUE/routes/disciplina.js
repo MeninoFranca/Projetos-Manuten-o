@@ -39,24 +39,20 @@ router.put("/disciplina/editar/:id", async(req,res) =>{
             carga_horaria,
             descricao_disciplina
         } = req.body
-
+        
         const disciplina = await Disciplina.findByPk(id)
         if(!disciplina){
             return res.status(404).json({error : `Tabela ${id} não encontrada`})
         }
-
         disciplina.nome_disciplina = nome_disciplina
         disciplina.carga_horaria = carga_horaria
         disciplina.descricao_disciplina = descricao_disciplina
-
         await disciplina.save()
         res.status(201)
     } catch (error) {
         res.error(`erro em editar os dados da tabela`)
     }
 })
-
-
 router.delete("/disciplina/excluir/:id", async (req, res) => {
     try {
         const id = req.params.id;

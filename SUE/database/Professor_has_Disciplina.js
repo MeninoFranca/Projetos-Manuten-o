@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const db = require('./database'); // Importe o arquivo de configuração do banco de dados
+const db = require('./database');
 
 const Professor_has_Disciplina = db.define(
   'Professor_has_Disciplina',

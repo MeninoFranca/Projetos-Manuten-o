@@ -7,7 +7,7 @@ app.set("view engine", "ejs");
 const connection = require("./database/database");
 const Disciplina = require("./routes/disciplina"); 
 // const Curso = require("./database/curso");
-// const Professor = require("./database/professor");
+const Professor = require("./routes/professor");
 // const Coordenador = require("./database/coordenador");
 const Aluno = require("./routes/aluno");
 // const Turma = require("./database/turma");
@@ -47,6 +47,7 @@ app.use(bodyParser.json());
 app.use("/", Disciplina);
 app.use("/", Aluno);
 app.use("/", Avaliacao);
+app.use("/", Professor);
 
 // //////////ALUNOOO
 
