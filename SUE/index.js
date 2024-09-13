@@ -8,7 +8,7 @@ const connection = require("./database/database");
 const Disciplina = require("./routes/disciplina"); 
 const Curso = require("./routes/curso");
 const Professor = require("./routes/professor");
-// const Coordenador = require("./database/coordenador");
+const Coordenador = require("./routes/coordenador");
 const Aluno = require("./routes/aluno");
 const Turma = require("./routes/turma");
 const Avaliacao = require("./routes/avaliacao");
@@ -50,6 +50,7 @@ app.use("/", Avaliacao);
 app.use("/", Professor);
 app.use("/", Turma);
 app.use("/", Curso);
+app.use("/", Coordenador);
 
 
 // //////////ALUNOOO

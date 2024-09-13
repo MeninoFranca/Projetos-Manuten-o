@@ -1,6 +1,5 @@
 const express = require("express");
 const { Avaliacao } = require("../database/avaliacao");
-const { Disciplina } = require("../database/disciplinas");
 const router = express.Router();
 
 router.get("/avaliacao", async (req, res) => {

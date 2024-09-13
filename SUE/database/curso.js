@@ -2,7 +2,7 @@ const { DataTypes, Sequelize } = require("sequelize");
 const connection = require("./database");
 
 
-const curso = connection.define(
+const Curso = connection.define(
   "curso",
   {
     id_Curso: {
@@ -45,6 +45,6 @@ async function sincronizarCurso() {
     }
   }
   module.exports = {
-  curso,
+  Curso,
   sincronizarCurso
   };

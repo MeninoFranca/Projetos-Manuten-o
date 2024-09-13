@@ -4,8 +4,8 @@ const router = express.Router();
 
 router.get("/curso", async (req,res)=>{
     try{
-        const cursao = await Curso.findAll({
-            raw : true
+        const curso = await Curso.findAll({
+            raw: true
         });
         res.status(200).send(curso)
     }catch(error){

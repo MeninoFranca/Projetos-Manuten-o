@@ -58,9 +58,9 @@ async function sincronizarPagamento() {
 }
 
 module.exports = {
-    Pagamento: Pagamento,
-    sincronizarPagamento: sincronizarPagamento
+    Pagamento,
+    sincronizarPagamento
 };
-Pagamento.sync({ force: false }).then(() => {});
 
-module.exports = Pagamento;
+
+

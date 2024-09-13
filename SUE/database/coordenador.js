@@ -41,11 +41,6 @@ async function sincronizarCoordenador() {
 
 
 module.exports = {
-  Coordenador: Coordenador,
-  sincronizarCoordenador: sincronizarCoordenador
+  Coordenador,
+  sincronizarCoordenador
 };
-
-
-Coordenador.sync({ force: false }).then(() => {});
-
-module.exports = Coordenador;
