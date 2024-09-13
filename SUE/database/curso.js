@@ -2,8 +2,8 @@ const { DataTypes, Sequelize } = require("sequelize");
 const connection = require("./database");
 
 
-const Curso = connection.define(
-  "Curso",
+const curso = connection.define(
+  "curso",
   {
     id_Curso: {
       type: DataTypes.INTEGER,
@@ -30,13 +30,13 @@ const Curso = connection.define(
   },
   {
     timestamps: true, 
-    tableName: "Curso", 
+    tableName: "curso", 
   }
 );
 /**/
 async function sincronizarCurso() {
     try {
-      await Curso.sync({ force: false });
+      await curso.sync({ force: false });
     } catch (error) {
       console.error("Erro ao sincronizar a tabela: ", error);
     } finally {
@@ -45,10 +45,6 @@ async function sincronizarCurso() {
     }
   }
   module.exports = {
-  Curso: Curso,
-  sincronizarCurso: sincronizarCurso
+  curso,
+  sincronizarCurso
   };
-
-Curso.sync({ force: false }).then(() => {});
-
-module.exports = Curso;

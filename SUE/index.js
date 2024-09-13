@@ -6,11 +6,11 @@ app.set("view engine", "ejs");
 
 const connection = require("./database/database");
 const Disciplina = require("./routes/disciplina"); 
-// const Curso = require("./database/curso");
+const Curso = require("./routes/curso");
 const Professor = require("./routes/professor");
 // const Coordenador = require("./database/coordenador");
 const Aluno = require("./routes/aluno");
-// const Turma = require("./database/turma");
+const Turma = require("./routes/turma");
 const Avaliacao = require("./routes/avaliacao");
 // const CoordenadorCurso = require("./database/coordenadorcurso");
 // const CoordenadorCursoVW = require("./database/coordenadorcursoVW");
@@ -48,6 +48,9 @@ app.use("/", Disciplina);
 app.use("/", Aluno);
 app.use("/", Avaliacao);
 app.use("/", Professor);
+app.use("/", Turma);
+app.use("/", Curso);
+
 
 // //////////ALUNOOO
 

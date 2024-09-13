@@ -52,6 +52,10 @@ router.put("/avaliacao/editar/:id", async (req, res) => {
 router.delete("/avaliacao/excluir/:id", async (req, res) => {
   try {
     const id = req.params.id;
+    const avaliacao = await Avaliacao.findByPk(id)
+        if(!avaliacao){
+            res.status(401).json("id nao encontrada")
+        }
     await Avaliacao.destroy({ where: { id_Avaliacao: id } });
     res.status(200).json("Excluido com sucesso")
   } catch (error) {

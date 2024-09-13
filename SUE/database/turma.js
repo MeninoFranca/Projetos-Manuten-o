@@ -1,33 +1,32 @@
-const { DataTypes, Sequelize } = require('sequelize');
-const connection = require('./database'); 
-
+const { DataTypes, Sequelize } = require("sequelize");
+const connection = require("./database");
 
 const Turma = connection.define(
-  'turma', {
-  id_Turma: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    allowNull: false,
-    autoIncrement: true,
+  "turma",
+  {
+    id_Turma: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
+    },
+    nome_turma: {
+      type: DataTypes.STRING(45),
+      allowNull: true,
+    },
+    ano: {
+      type: DataTypes.STRING(45),
+      allowNull: true,
+    },
+    semestre: {
+      type: DataTypes.DECIMAL,
+      allowNull: true,
+    },
   },
-  nome_turma: {
-    type: DataTypes.STRING(45),
-    allowNull: true
-  },
-  ano: {
-    type: DataTypes.STRING(45),
-    allowNull: true
-  },
-  semestre: {
-    type: DataTypes.DECIMAL,
-    allowNull: true
-  },
-}, 
-{
-  tableName: 'turma',
-  timestamps: false,
-
-}
+  {
+    tableName: "turma",
+    timestamps: false,
+  }
 );
 async function sincronizarTurma() {
   try {
@@ -41,9 +40,6 @@ async function sincronizarTurma() {
 }
 /**/
 module.exports = {
-Turma: Turma,
-sincronizarTurma: sincronizarTurma
+  Turma,
+  sincronizarTurma,
 };
-Turma.sync({ force: false }).then(() => {});
-
-module.exports = Turma;
