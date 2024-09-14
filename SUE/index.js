@@ -14,15 +14,15 @@ const Turma = require("./routes/turma");
 const Avaliacao = require("./routes/avaliacao");
 // const CoordenadorCurso = require("./database/coordenadorcurso");
 // const CoordenadorCursoVW = require("./database/coordenadorcursoVW");
-// const TurmaCurso = require("./database/turmacurso");
-// const TurmaCursoVW = require("./database/turmacursoVW");
+const TurmaCurso = require("./routes/turmacurso");
+
 // const ProfessorDisciplina = require("./database/professordisciplina");
 // const ProfessorDisciplinaVW = require("./database/professordisciplinaVW");
 // const DisciplinaCurso = require("./database/disciplinacurso");
 // const DisciplinaCursoVW = require("./database/disciplinacurso.VW");
 // const AvaliacaoAluno = require("./database/avaliacaoaluno");
 // const AvaliacaoAlunoVW = require("./database/avaliacaoalunoVW");
-// const Pagamento = require("./database/pagamento");
+const Pagamento = require("./routes/pagamento");
 // const PagamentoAluno = require("./database/pagamentoaluno");
 // const PagamentoAlunoVW = require("./database/pagamentoalunoVW");
 // const Aluno_has_Curso = require("./database/Aluno_has_Curso");
@@ -51,6 +51,8 @@ app.use("/", Professor);
 app.use("/", Turma);
 app.use("/", Curso);
 app.use("/", Coordenador);
+app.use("/", Pagamento);
+app.use("/", TurmaCurso);
 
 
 // //////////ALUNOOO

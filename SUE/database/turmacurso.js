@@ -1,9 +1,9 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("./database"); 
 
-class TurmaCurso  extends Model {}
+class turmacurso  extends Model {}
 
-TurmaCurso.init(
+turmacurso.init(
   {
     id_Turma: {
       type: DataTypes.INTEGER,
@@ -26,7 +26,7 @@ TurmaCurso.init(
   },
   {
     sequelize,
-    modelName: "TurmaCurso",
+    modelName: "turmacurso",
     tableName: "turmacurso",
     timestamps: true,
   }
@@ -42,6 +42,6 @@ async function sincronizarTurmaCurso() {
     console.log("Conexão fechada.");
   }
 }
-TurmaCurso.sync({ force: false }).then(() => {});
 
-module.exports = TurmaCurso;
+
+module.exports = turmacurso;
