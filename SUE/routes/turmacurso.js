@@ -1,14 +1,15 @@
 const express = require("express")
-const { turmacurso } = require("../database/turmacurso")
+const { Turmacurso } = require("../database/turmacurso")
 const router = express.Router()
 
 router.get("/turmacurso",async (req,res)=>{
     try {
-        const turma = await turmacurso.findAll({
+        const turma = await Turmacurso.findAll({
             raw : true
         })
-        res.send(turma)
+        res.status(201).send(turma)
     } catch (error) {
+        console.log(error)
         res.status(401)
     }
 })
@@ -19,7 +20,7 @@ router.post("/turmacurso/criar",async (req,res)=>{
             id_Turma,
             id_Curso
         } = req.body
-        await turmacurso.create({
+        await Turmacurso.create({
             id_Turma,
             id_Curso
         })
@@ -31,20 +32,26 @@ router.post("/turmacurso/criar",async (req,res)=>{
     }
 })
 
-router.put("/turmacurso/editar/:id",async (req,res)=>{
+router.put("/turmacurso/editar/:turma/:curso",async (req,res)=>{
     try {
-        const id = req.params.id
+        const turma = req.params.turma
+        const curso = req.params.curso
         const {
             id_Turma,
             id_Curso
         } = req.body
-        const idvalidar = await turmacurso.findByPk(id)
-        if(!idvalidar){
+        
+        const turmaa = await Turmacurso.findByPk(turma)
+        if(!turmaa){
             res.status(403).json("Id não encontrado")
         }
-        turmacurso.id_Turma = id_Turma
-        turmacurso.id_Curso = id_Curso
-        turmacurso.save()
+        const cursoo = await Turmacurso.findByPk(curso)
+        if(!cursoo){
+            res.status(403).json("Id não encontrado")
+        }
+        Turmacurso.id_Turma = id_Turma
+        Turmacurso.id_Curso = id_Curso
+        Turmacurso.save()
         res.status(201)
     } catch (error){
         res.status(401)
@@ -52,12 +59,16 @@ router.put("/turmacurso/editar/:id",async (req,res)=>{
     }
 })
 
-router.delete("/turmacurso/excluir/:id",async (req,res)=>{
+router.delete("/turmacurso/excluir/:turma/:curso",async (req,res)=>{
     try{
-
+        const turma = req.params.turma
+        const curso = req.params.curso
+        await Turmacurso.destroy({where: {id_Turma : turma}, where : {id_Curso : curso}})
+        res.status(201)
     }
     catch (error){
-
+        console.log(error)
+        res.status(401)
     }
 })
 

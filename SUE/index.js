@@ -14,7 +14,7 @@ const Turma = require("./routes/turma");
 const Avaliacao = require("./routes/avaliacao");
 // const CoordenadorCurso = require("./database/coordenadorcurso");
 const TurmaCurso = require("./routes/turmacurso");
-// const ProfessorDisciplina = require("./database/professordisciplina");
+const ProfessorDisciplina = require("./routes/professordisciplina");
 // const DisciplinaCurso = require("./database/disciplinacurso");
 // const AvaliacaoAluno = require("./database/avaliacaoaluno");
 const Pagamento = require("./routes/pagamento");
@@ -47,6 +47,7 @@ app.use("/", Curso);
 app.use("/", Coordenador);
 app.use("/", Pagamento);
 app.use("/", TurmaCurso);
+app.use("/", ProfessorDisciplina);
 
 
 // //////////ALUNOOO

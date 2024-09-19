@@ -1,5 +1,4 @@
 const express = require("express");
-const { route } = require("express/lib/application");
 const { Pagamento } = require("../database/pagamento");
 const router = express.Router();
 

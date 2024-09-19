@@ -1,9 +1,8 @@
 const { DataTypes, Model } = require("sequelize");
-const sequelize = require("./database"); 
+const connection = require("./database")
 
-class turmacurso  extends Model {}
-
-turmacurso.init(
+const Turmacurso  = connection.define(
+  "turmacurso",
   {
     id_Turma: {
       type: DataTypes.INTEGER,
@@ -25,8 +24,6 @@ turmacurso.init(
     },
   },
   {
-    sequelize,
-    modelName: "turmacurso",
     tableName: "turmacurso",
     timestamps: true,
   }
@@ -44,4 +41,8 @@ async function sincronizarTurmaCurso() {
 }
 
 
-module.exports = turmacurso;
+module.exports = {
+  Turmacurso,
+  sincronizarTurmaCurso,
+};
+

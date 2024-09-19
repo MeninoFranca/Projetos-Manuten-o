@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const db = require('./database'); 
+
 const ProfessorDisciplina = db.define(
   'ProfessorDisciplina',
    {
@@ -34,10 +35,9 @@ async function sincronizarProfessorDisciplina() {
   }
 }
 module.exports = {
-    ProfessorDisciplina: ProfessorDisciplina,
-    ProfessorDisciplina: ProfessorDisciplina
+    ProfessorDisciplina,
+    sincronizarProfessorDisciplina
 };
-ProfessorDisciplina.sync({ force: false }).then(() => {});
 
-module.exports = ProfessorDisciplina;
+
 
