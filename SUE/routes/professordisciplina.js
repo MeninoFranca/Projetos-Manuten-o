@@ -30,29 +30,22 @@ Router.post("/professordisciplina/criar", async (req,res)=>{
     }
 })
 
-Router.put("/professordisciplina/editar/:professor/:disciplina",async (req,res)=>{
+Router.put("/professordisciplina/editar/:id",async (req,res)=>{
     try {
-        const professor = req.params.professor
-        const disciplina = req.params.disciplina
-
+        const id = req.params.id
         const{
             id_professor,
             id_disciplina
         } = req.body
-
-        const professorr = await ProfessorDisciplina.findByPk(professor)
-        if(!professorr){
-           res.status(401).json("Id professor nao encontrado") 
-        }
-        const disciplinaa = await ProfessorDisciplina.findByPk(disciplina)
-        if(!disciplinaa){
+        const relacionamento = await ProfessorDisciplina.findByPk(id)
+        if(!relacionamento){
            res.status(401).json("Id disciplina nao encontrado") 
         }
 
-        professorr.id_professor = id_professor;
-        disciplinaa.id_disciplina =
+        relacionamento.id_professor = id_professor;
+        relacionamento.id_disciplina =
         id_disciplina;
-        ProfessorDisciplina.save()
+        relacionamento.save()
 
         res.status(201)
     } catch (error) {
@@ -60,19 +53,15 @@ Router.put("/professordisciplina/editar/:professor/:disciplina",async (req,res)=
     }
 })
 
-Router.delete("/professordisciplina/excluir/:professor/:disciplina",async (req,res)=>{
+Router.delete("/professordisciplina/excluir/:id",async (req,res)=>{
     try {
-        const professor = req.params.professor
-        const disciplina = req.params.disciplina
-        const professorr = await ProfessorDisciplina.findByPk(professor)
-        if(!professorr){
-           res.status(401).json("Id professor nao encontrado") 
-        }
-        const disciplinaa = await ProfessorDisciplina.findByPk(disciplina)
-        if(!disciplinaa){
+        const id = req.params.id
+        
+        const relacionamento = await ProfessorDisciplina.findByPk(id)
+        if(!relacionamento){
            res.status(401).json("Id disciplina nao encontrado") 
         }
-        await ProfessorDisciplina.destroy({where: {id_disciplina : disciplinaa},where: {id_professor : id_professorr}})
+        relacionamento.destroy({where: {id : id}})
         res.status(201)
     } catch (error) {
         res.status(401)
