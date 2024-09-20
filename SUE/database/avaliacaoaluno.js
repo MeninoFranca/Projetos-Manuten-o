@@ -1,8 +1,7 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("./database"); 
-class AvaliacaoAluno  extends Model {}
-
-AvaliacaoAluno.init(
+const AvaliacaoAluno = sequelize.define( 
+"avaliacaoaluno",
   {
     id_Avaliacao: {
       type: DataTypes.INTEGER,
@@ -24,8 +23,6 @@ AvaliacaoAluno.init(
     },
   },
   {
-    sequelize,
-    modelName: "AvaliacaoAluno",
     tableName: "avaliacaoaluno",
     timestamps: false,
   }
@@ -42,6 +39,8 @@ async function sincronizarAvaliacaoAluno() {
   }
 }
 
-AvaliacaoAluno.sync({ force: false }).then(() => {});
 
-module.exports = AvaliacaoAluno;
+module.exports = {
+  AvaliacaoAluno,
+  sincronizarAvaliacaoAluno
+};

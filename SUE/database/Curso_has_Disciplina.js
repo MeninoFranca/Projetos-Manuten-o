@@ -26,8 +26,5 @@ async function sincronizarCurso_has_Disciplina() {
   }
 }
 module.exports = {
-  Curso_has_Disciplina: Curso_has_Disciplina,
-    sincronizarCurso_has_Disciplina: sincronizarCurso_has_Disciplina
+    Curso_has_Disciplina,sincronizarCurso_has_Disciplina
 };
-Curso_has_Disciplina.sync({ force: false }).then(() => {});
-

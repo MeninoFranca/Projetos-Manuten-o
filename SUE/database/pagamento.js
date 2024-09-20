@@ -1,7 +1,7 @@
 const { DataTypes, Sequelize } = require('sequelize');
-const connection  = require('./database');  // Supondo que './database' exporta uma instância válida de Sequelize
+const connection  = require('./database'); 
 
-const Pagamento = connection .define(
+const Pagamento = connection.define(
     'pagamento', 
     {
         id_Pagamento: {

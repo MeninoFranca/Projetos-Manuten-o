@@ -28,11 +28,6 @@ async function sincronizarProfessor_has_Disciplina() {
 }
 
 module.exports = {
-    Professor_has_Disciplina: Professor_has_Disciplina,
-    Professor_has_Disciplina: Professor_has_Disciplina
+    Professor_has_Disciplina,sincronizarProfessor_has_Disciplina
 };
-
-Professor_has_Disciplina.sync({ force: false }).then(() => {});
-
-module.exports = Professor_has_Disciplina;
 

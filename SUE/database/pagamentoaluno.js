@@ -1,10 +1,8 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("./database"); 
 
-
-class PagamentoAluno extends Model {}
-
-PagamentoAluno.init(
+const Pagamento = sequelize.define(
+  "pagamentoaluno",
   {
     id_Pagamento: {
       type: DataTypes.INTEGER,
@@ -26,8 +24,6 @@ PagamentoAluno.init(
     },
   },
   {
-    sequelize,
-    modelName: "PagamentoAluno",
     tableName: "pagamentoaluno",
     timestamps: true,
   }
@@ -43,6 +39,8 @@ async function sincronizarPagamentoAluno() {
     console.log("Conexão fechada.");
   }
 }
-PagamentoAluno.sync({ force: false }).then(() => {});
 
-module.exports = PagamentoAluno;
+module.exports = {
+  Pagamento,
+  sincronizarPagamentoAluno
+};

@@ -18,7 +18,6 @@ const Aluno_has_Turma = db.define(
   timestamps: false, 
 });
 
-module.exports = Aluno_has_Turma;
 /**/
 async function sincronizarAluno_has_Turma() {
   try {
@@ -29,7 +28,7 @@ async function sincronizarAluno_has_Turma() {
 }
 
 module.exports = {
-  Aluno_has_Turma: Aluno_has_Turma,
-  sincronizarAluno_has_Turma: sincronizarAluno_has_Turma
+Aluno_has_Turma,
+sincronizarAluno_has_Turma
 };
-Aluno_has_Turma.sync({ force: false }).then(() => {});
+

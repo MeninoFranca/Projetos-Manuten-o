@@ -1,9 +1,8 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("./database"); 
 
-class CoordenadorCurso  extends Model {}
-
-CoordenadorCurso.init(
+const CoordenadorCurso = sequelize.define(
+"coordenadorcurso",
   {
     id_Coordenador: {
       type: DataTypes.INTEGER,
@@ -25,8 +24,6 @@ CoordenadorCurso.init(
     },
   },
   {
-    sequelize,
-    modelName: "CoordenadorCurso",
     tableName: "coordenadorcurso",
     timestamps: true,
   }
@@ -43,6 +40,8 @@ async function sincronizarCoordenadorCurso() {
   }
 }
 
-CoordenadorCurso.sync({ force: false }).then(() => {});
-
-module.exports = CoordenadorCurso;
+module.exports ={
+  CoordenadorCurso,
+  sincronizarCoordenadorCurso
+};
+  

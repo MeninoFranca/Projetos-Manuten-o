@@ -15,7 +15,6 @@ const Aluno_has_Curso = db.define(
 }, {
   tableName: 'Aluno_has_Curso',
   timestamps: false, 
-  
  
 });
 /**/
@@ -28,10 +27,5 @@ async function sincronizarAluno_has_Curso() {
 }
 
 module.exports = {
-  Aluno_has_Curso: Aluno_has_Curso,
-  sincronizarAluno_has_Curso: sincronizarAluno_has_Curso
+Aluno_has_Curso,sincronizarAluno_has_Curso
 };
-
-Aluno_has_Curso.sync({ force: false }).then(() => {});
-
-module.exports = Aluno_has_Curso;
